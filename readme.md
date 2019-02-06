@@ -1,5 +1,5 @@
 # Quickstart
-Welcome to the world of Dolittle! In this guide we are going to get you all set up so you can build your own applications using the Dolittle Framework.
+Welcome to the world of Dolittle! In this guide we are going to get you all set up so you can build your own applications using the Dolittle Framework. We will start the basis of what will be a simple ToDo-application.
 
 ## Prerequisits
 - Have Visual Studio Code installed
@@ -18,7 +18,6 @@ https://nodejs.org/en/
 npm install -g @dolittle/cli
 ```
 
-
 #### 3) Test if the CLI tool works
 Run dolittle in your command window, it should output the supported commands.
 ```console
@@ -31,19 +30,19 @@ dolittle
 We will use the cli tool to create a new application.
 
 The first thing we need is a folder where our application will live.
-Create a new folder somewhere on your computer, and name it DolittleQuickstart.
+Create a new folder somewhere on your computer, and name it ToDolittle.
 ```console
-mkdir DolittleQuickstart
+mkdir ToDolittle
 ```
 
 Go into that folder:
 ```console
-cd DolittleQuickstart
+cd ToDolittle
 ```
 
 To create a new application using the CLI tool, we will use the dolittle create application command.
 ```console
-dolittle create application DolittleQuickstart
+dolittle create application ToDolittle
 ```
 
 The application has now been created. 
@@ -51,21 +50,21 @@ The application has now been created.
 #### 2) Create a bounded context
 Each application needs to have one more more Bounded Contexts. We will use the CLI tool to add a Bounded Context to our application.
 ```console
-dolittle create boundedcontext QuickstartBC
+dolittle create boundedcontext TodoTracking
 ```
 
-A bounded context is now added to the application, located inside the QuickstartBC folder.
+A bounded context is now added to the application, located inside the TodoTracking folder.
 
 This folder is based on the Bounded Context boilerplate and will contain everything you need to run the Dolittle template application.
 
 #### 3) Open the application in Visual Studio code
-Launch Visual Studio Code and open the DolittleQuickstart folder as the project, or open it directly from the application folder from a Terminal.
+Launch Visual Studio Code and open the ToDolittle folder as the project, or open it directly from the application folder from a Terminal.
 ```console
 code .
 ```
 
 #### 4) Build and Run the Template Application
-To run the application, we will use the Dolittle CLI tool again. From the QuickstartBC folder, run the following command.
+To run the application, we will use the Dolittle CLI tool again. From the TodoTracking folder, run the following command.
 ```console
 dolittle run
 ```
