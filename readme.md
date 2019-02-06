@@ -3,9 +3,8 @@ Welcome to the world of Dolittle! In this guide we are going to get you all set 
 
 ## Prerequisits
 - Have Visual Studio Code installed
-- Have .net SDK installed
-- Have Docker installed
-- Have node installed
+- Have [.NET Core SDK](https://dotnet.microsoft.com/download) installed
+- Have [node.js](https://nodejs.org/en/) installed
 
 To get get started, we will install the Dolittle CLI tool. The CLI tool is often used extensively when creating new applications or adding Dolittle components to it.
 
