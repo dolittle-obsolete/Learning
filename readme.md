@@ -1,5 +1,5 @@
 # Quickstart
-Welcome to the world of Dolittle! In this guide we are going to get you all st up so you can build your own applications usuing the Dolittle Framework.
+Welcome to the world of Dolittle! In this guide we are going to get you all set up so you can build your own applications using the Dolittle Framework.
 
 ## Prerequisits
 - Have Visual Studio Code installed
@@ -41,7 +41,7 @@ Go into that folder:
 cd DolittleQuickstart
 ```
 
-To create a ne application using the CLI tool, we will use the dolittle create application command.
+To create a new application using the CLI tool, we will use the dolittle create application command.
 ```console
 dolittle create application DolittleQuickstart
 ```
