@@ -72,3 +72,7 @@ You should see our template app running on localhost.
 ## Using our Dolittle Extension in Visual Studio Code
 We also have an extension for Visual Studio Code that allows you to add Dolittle components to you app without using the CLI tool, if you prefer that.
 [Dolittle Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=Dolittle.dolittle-vscode)
+
+# Continue learning
+We have created a Getting Started lesson that will take you through all the steps needed to build a ToDo application that has a Dolittle backend, and an Aurelia frontend.
+The guide is soon available here: Link
