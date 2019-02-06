@@ -1,4 +1,4 @@
-#Quickstart
+# Quickstart
 Welcome to the world of Dolittle! In this guide we are going to get you all st up so you can build your own applications usuing the Dolittle Framework.
 
 ## Prerequisits
