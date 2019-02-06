@@ -5,20 +5,17 @@ Welcome to the world of Dolittle! In this guide we are going to get you all set 
 - Have Visual Studio Code installed
 - Have .net SDK installed
 - Have Docker installed
+- Have node installed
 
 To get get started, we will install the Dolittle CLI tool. The CLI tool is often used extensively when creating new applications or adding Dolittle components to it.
 
 ## Installing the CLI
-#### 1) Install node on your computer. 
-Download and install node from the link below. It is needed by our tools.
-https://nodejs.org/en/
-
-#### 2) Install the Dolittle CLI tool
+#### 1) Install the Dolittle CLI tool
 ```console
 npm install -g @dolittle/cli
 ```
 
-#### 3) Test if the CLI tool works
+#### 2) Test if the CLI tool works
 Run dolittle in your command window, it should output the supported commands.
 ```console
 dolittle
