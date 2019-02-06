@@ -10,7 +10,7 @@ To get get started, we will install the Dolittle CLI tool. The CLI tool is often
 
 ## Installing the CLI
 #### 1) Install node on your computer. 
-I usually stick with the LTS version.
+Download and install node from the link below. It is needed by our tools.
 https://nodejs.org/en/
 
 #### 2) Install the Dolittle CLI tool
