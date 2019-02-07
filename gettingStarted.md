@@ -12,7 +12,7 @@ To get everything up and running, follow the Quickstart guide, and verify that e
 Take a moment to go through the [Quickstart](www.dolittle.com) now.
 
 ## 2 - Creating the Back End
-The Dolittle framework is based on a modern software architecture that leverages CQRS and Event Sourcing. These might be new concepts for you, but don't worry, by using Dolittle, we do the heavy lifting for you while you can focus on the Business Value.
+The Dolittle framework is based on a modern software architecture that leverages CQRS and Event Sourcing. These may be new or daunting principles. However, don't worry, Dolittle does the heavy lifting for you so you can focus on the Business Value. Dolittle will also help you learn more about this approach to building sustainable software solutions.
 
 Once you have completed the ToDo app, and are ready to learn more about Dolittle's overall architecture, philosophy and specific concepts, we recommend you to check out the Architecture lesson, and the official documentation. 
 
