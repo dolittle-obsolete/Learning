@@ -34,6 +34,7 @@ The video shows you how that frontend looks, and works, before diving into the c
 The source is available at LINK.
 
 # Architecture
-Congratulations on creating your first application on Dolittle, from the backend to the frontend, with a modern and robust architecture that makes it easy to maintain and scale your applications.
-The next step I recommend you to take is to look at the Architecture lesson, and dive into the various building blocks the framework offers.
+Congratulations! You've now created your first application on Dolittle, from the backend to the frontend, with a modern and robust architecture that makes it easy to maintain and scale your applications.
+As a next step, take a look at the Architecture lesson, and dive into the various building blocks the framework offers.
+
 [![](http://img.youtube.com/vi/9cZXtmnMSRI/0.jpg)](http://www.youtube.com/watch?v=9cZXtmnMSRI "Architecture")
