@@ -1,3 +1,11 @@
+---
+title: Quickstart
+description: Get up and running with Dolittle Tooling
+keywords: Learning, Quickstart, CLI, Tools
+author: Dolittle
+weight: 20
+---
+
 # Quickstart
 Welcome to the world of Dolittle! In this guide we are going to get you all set up so you can build your own applications using the Dolittle Framework. We will start the basis of what will be a simple ToDo-application.
 

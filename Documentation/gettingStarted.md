@@ -1,3 +1,11 @@
+---
+title: Getting Started
+description: Get started with the Dolittle platform
+keywords: Learning, Quickstart, Walkthrough, Guide
+author: Dolittle
+weight: 30
+---
+
 # Getting Started
 Welcome to the Getting Started guide! In this guide, you will develop a ToDo app built on a Dolittle back end, and connect an Aurelia front end.
 The lesson consists of three parts.
