@@ -27,7 +27,7 @@ Run dolittle in your command window, it should output the supported commands.
 ```console
 dolittle
 ```
-![Dolittle CLI](/dolittleCLI.png)
+![Dolittle CLI](../images/dolittleCLI.png)
 
 ## Building your first application
 #### 1) Create a new application
@@ -75,7 +75,7 @@ dolittle run
 
 #### 5) The template application
 You should see our template app running on localhost.
-![Dolittle CLI](/templateApp.png)
+![Dolittle CLI](../images/templateApp.png)
 
 ## Using our Dolittle Extension in Visual Studio Code
 We also have an extension for Visual Studio Code that allows you to add Dolittle components to you app without using the CLI tool, if you prefer that.

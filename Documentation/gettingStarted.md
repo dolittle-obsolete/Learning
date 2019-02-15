@@ -26,7 +26,7 @@ Once you have completed the ToDo app, and are ready to learn more about Dolittle
 
 In the video below, Tomas from Dolittle takes you through all the steps needed to develop the backend for the ToDo application. Also, he briefly explains many of the concepts and core building blocks used while developing an app on Dolittle.
 
-[![](http://img.youtube.com/vi/UZTu2hjuQZ4/0.jpg)](http://www.youtube.com/watch?v=UZTu2hjuQZ4 "Back End")
+{{< youtube UZTu2hjuQZ4 >}}
 
 The source is available at LINK.
 
@@ -37,7 +37,7 @@ In this lesson, Pavneet takes you through all the steps needed to connect a fron
 
 The video shows you how that frontend looks, and works, before diving into the code changes needed to hook this into our backend.
 
-[![](http://img.youtube.com/vi/rd7MgusMSCI/0.jpg)](http://www.youtube.com/watch?v=rd7MgusMSCI "Front End")
+{{< youtube rd7MgusMSCI  >}}
 
 The source is available at LINK.
 
@@ -45,4 +45,4 @@ The source is available at LINK.
 Congratulations! You've now created your first application on Dolittle, from the backend to the frontend, with a modern and robust architecture that makes it easy to maintain and scale your applications.
 As a next step, take a look at the Architecture lesson, and dive into the various building blocks the framework offers.
 
-[![](http://img.youtube.com/vi/9cZXtmnMSRI/0.jpg)](http://www.youtube.com/watch?v=9cZXtmnMSRI "Architecture")
+{{< youtube 9cZXtmnMSRI   >}}
