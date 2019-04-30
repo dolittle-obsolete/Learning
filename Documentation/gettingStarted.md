@@ -19,6 +19,8 @@ To get everything up and running, follow the Quickstart guide, and verify that e
 Take a moment to go through the [Quickstart](www.dolittle.com) now.
 
 ## 2 - Creating the Back End
+Source code for this section [available here](https://github.com/TomasEkeli/ToDolittle) 
+
 The Dolittle framework is based on a modern software architecture that leverages CQRS and Event Sourcing. These may be new or daunting principles. However, don't worry, Dolittle does the heavy lifting for you so you can focus on the Business Value. Dolittle will also help you learn more about this approach to building sustainable software solutions.
 
 Once you have completed the ToDo app, and are ready to learn more about Dolittle's overall architecture, philosophy and specific concepts, we recommend you to check out the Architecture lesson, and the official documentation. 
@@ -27,9 +29,9 @@ In the video below, Tomas from Dolittle takes you through all the steps needed t
 
 {{< youtube UZTu2hjuQZ4 >}}
 
-The source is available at LINK.
-
 ## 3 - Creating the Front End
+Source code for this section [available here](https://github.com/pavsaund/ToDolittle) 
+
 In the previous step, you created the backend for the ToDO app and had a brief look at the artifacts used to make frontend integrations with the Dolittle backend easier.
 
 In this lesson, Pavneet takes you through all the steps needed to connect a frontend on top of a Dolittle backend. The front-end application is from the popular [TodoMVC open-source project](http://todomvc.com) for the [Aurelia.js framework](https://aurelia.io).
@@ -37,8 +39,6 @@ In this lesson, Pavneet takes you through all the steps needed to connect a fron
 The video shows you how that frontend looks, and works, before diving into the code changes needed to hook this into our backend.
 
 {{< youtube rd7MgusMSCI  >}}
-
-The source is available at LINK.
 
 # Architecture
 Congratulations! You've now created your first application on Dolittle, from the backend to the frontend, with a modern and robust architecture that makes it easy to maintain and scale your applications.
