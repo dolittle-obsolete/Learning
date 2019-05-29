@@ -1,7 +1,7 @@
 ---
-title: Security Descriptors
+title: How to secure commands and queries
 description: Overview of the fluent interface to secure commands and queries
-keywords: Overview, Security, Command, Query
+keywords: Overview, Security, Command, Query, SecurityDescriptor
 author: tomas
 ---
 Securing your commands and queries is important. As a part of the Fundamentals
