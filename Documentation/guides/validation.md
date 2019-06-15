@@ -210,6 +210,12 @@ namespace Domain.Customers
 }
 ```
 
+{{% notice tip %}} 
+The use of strongly typed delegates to define business rules makes it extremely easy to test your business validators.
+For example, if you wish to test that the Command is invalid if the customer already exists, you can provide the implemenation
+() => true for the CustomerExist delegate.
+{{% /notice %}}
+
 This is such a common pattern that we have provided helpers for writing and hooking up your rule implementations to your rules.
 
 The Rules project should have a reference to both the Domain and Read projects.  By implementing the `IRuleImplementationFor<>` interface for the specific delegate, the platform will discover and provide the implementation of the rule to any validator requiring it.
@@ -239,4 +245,6 @@ namespace Rules.Customers
 
 The rule implementation simply queries the read side to see if any customers with this Id exist.  Note that the implementation does not
 take an IReadModelRepository<Customer> directly.  This is because resources like databases are scoped to tenants and in a multi-tenanted app you need to make sure you are given the correctly scoped dependency. By using `FactoryFor<>` to request an instance of the repository each time you use it, you will always have the correct repository for the current tenant.
+
+
 
