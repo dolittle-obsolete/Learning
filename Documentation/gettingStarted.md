@@ -16,7 +16,7 @@ The lesson consists of three parts.
 The first thing you need is to install the CLI tool. It is possible to use the Visual Studio Extension too, but the videos are using the CLI tool, so if you are just getting started with Dolittle, we recommend following the same steps as in this lesson.
 
 To get everything up and running, follow the Quickstart guide, and verify that everything works on your computer.
-Take a moment to go through the [Quickstart](www.dolittle.com) now.
+Take a moment to go through the [Quickstart]({{< relref quickstart >}}) now.
 
 ## 2 - Creating the Back End
 Source code for this section [available here](https://github.com/TomasEkeli/ToDolittle) 
