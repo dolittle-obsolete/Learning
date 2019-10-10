@@ -9,7 +9,7 @@ weight: 20
 # Quickstart
 Welcome to the world of Dolittle! In this guide we are going to get you all set up so you can build your own applications using the Dolittle Framework. We will start the basis of what will be a simple ToDo-application.
 
-## Prerequisits
+## Prerequisites
 Have Visual Studio Code installed
 Have [.NET Core SDK](https://dotnet.microsoft.com/download) installed
 Have [node.js](https://nodejs.org/en/) installed
@@ -31,7 +31,7 @@ dolittle
 
 ## Building your first application
 #### 1) Create a new application
-We will use the cli tool to create a new application.
+We will use the CLI tool to create a new application.
 
 The first thing we need is a folder where our application will live.
 Create a new folder somewhere on your computer, and name it ToDolittle.
