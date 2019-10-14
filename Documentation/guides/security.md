@@ -85,7 +85,7 @@ namespace Read.Customers
                     restriction =>
                         restriction
                             .UserFrom(_principalResolver)
-                            .HasClaimType("name")
+                            .MustHaveClaimTypeWithValue("name", "Jane Doe")
                 );
         }
     }
