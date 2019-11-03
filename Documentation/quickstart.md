@@ -52,7 +52,7 @@ dolittle create application ToDolittle
 The application has now been created. 
 
 #### 2) Create a bounded context
-Each application needs to have one more more Bounded Contexts. We will use the CLI tool to add a Bounded Context to our application.
+Each application needs to have one or more Bounded Contexts. We will use the CLI tool to add a Bounded Context to our application.
 ```console
 dolittle create boundedcontext TodoTracking
 ```
