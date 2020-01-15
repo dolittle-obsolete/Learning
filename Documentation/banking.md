@@ -1,12 +1,12 @@
 ---
-title: Get started with a banking web app
+title: Get started with Dolittle
 description: Create a banking web app with Dolittle
 keywords: Learning, Quickstart, CLI, Tools
 author: Joel Hoisko
 weight: 20
 ---
 
-# Create a banking web app with Dolittle
+# Getting started with Dolittle
 
 This tutorial teaches the basics of using Dolittle to create a web-application. 
 
@@ -28,7 +28,7 @@ This example based off of a [Banking sample.](https://github.com/dolittle-sample
 
 ### Install the CLI
 
-The [Dolittle CLI tool]({{< relref "/Tooling/_index" >}}) makes developing Dolittle applications easier by providing boilerplate code to bootstrap your application.
+The [Dolittle CLI tool]({{< relref "/tooling/cli/_index.md" >}}) makes developing Dolittle applications easier by providing boilerplate code to bootstrap your application.
 
 1. Install the CLI tool
 ```console
@@ -49,7 +49,7 @@ dolittle
 
 
 ## Create a web app
-In this part you will create a blank Dolittle web application with the [Dolittle CLI tool]({{< relref "/Tooling/_index" >}}).
+In this part you will create a blank Dolittle web application with the [Dolittle CLI tool]({{< relref "/tooling/cli/_index.md" >}}).
 
 ### 1) Create a new application
 Use the CLI tool to create a new application.
