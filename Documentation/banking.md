@@ -10,7 +10,7 @@ weight: 20
 
 This tutorial teaches the basics of using Dolittle to create a web-application. 
 
-You learn how to:
+The app manages users in an online bank. You learn how to:
 
 * Create a web app
 * Use `Commands` to create `Events`
@@ -18,6 +18,8 @@ You learn how to:
 * Create  `Queries` for `ReadModels`
 
 This tutorial expects you to have a basic understanding of .NET, C# and npm.
+
+At the end you have an app that can manage bank users and their accounts.
 
 This example based off of a [Banking sample.](https://github.com/dolittle-samples/Bank)
 
@@ -52,7 +54,7 @@ dolittle
 In this part you will create a blank Dolittle web application with the [Dolittle CLI tool]({{< relref "/tooling/cli/_index.md" >}}).
 
 ### 1) Create a new application
-Use the CLI tool to create a new application.
+Use the CLI tool to create a new [application]().
 
 The first thing you need is a folder where our application will live.
 Create a new folder somewhere on your computer, name it Banking and change into that directory.
@@ -61,25 +63,29 @@ mkdir BankingApplication
 cd BankingApplication
 ```
 
-To create a new application using the CLI tool, we will use the dolittle create application command.
+To create a new application using the CLI tool, use the `dolittle create application` command.
 ```console
 dolittle create application BankingApplication
 ```
 
-{{% notice tip%}}
+{{% notice tip %}}
 If you get an error saying:
 ```console
 No application boilerplates found for language 'csharp'
 ```
 You can fix it by running the command:
 ```console
-dolittle boileplates installed
+dolittle boilerplates installed
 ```
 {{% /notice %}}
 
-The application has now been created. 
+The basic application scaffolding has now been created. The folder structure should look like this:
+```
+├── application.json
+└── .dolittlerc
+```
 
-#### 2) Create a bounded context
+### 2) Create a bounded context
 Each application needs to have one or more [**Bounded Contexts**](). Use the CLI tool to add a Bounded Context to our application.
 
 Run this command inside the _BankingApplication_ directory:
@@ -87,7 +93,7 @@ Run this command inside the _BankingApplication_ directory:
 dolittle create boundedcontext Banking
 ```
 
-A bounded context is now added to the application, located inside the  folder. This folder is based on the Bounded Context boilerplate and will contain everything you need to run the Dolittle template application.
+A bounded context is now added to the application, located inside the folder. This folder is based on the Bounded Context boilerplate and will contain everything you need to run the Dolittle template application.
 
 #### 3) Open the application in Visual Studio code
 Launch Visual Studio Code and open the ToDolittle folder as the project, or open it directly from the application folder from a Terminal.
