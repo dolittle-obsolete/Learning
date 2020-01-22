@@ -9,5 +9,5 @@ icon: "ti-time"
 repository: https://github.com/dolittle/Learning
 ---
 
-TODO: add explanation here
+TODO: add overview here? or something else?
 

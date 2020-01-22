@@ -1,5 +1,5 @@
 ---
-title: Tutorial
+title: Get started
 description: Get started with the Dolittle framework
 keywords: Learning, Quickstart, Walkthrough, Guide
 author: Dolittle
