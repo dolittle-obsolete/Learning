@@ -6,6 +6,7 @@ author: Joel Hoisko
 weight: 1
 aliases:
     - /getting-started/quickstart/
+    - /getting-started/
 ---
 
 This tutorial teaches the basics of using Dolittle to create a simple banking web-application. 
@@ -17,9 +18,9 @@ You learn how to:
 * Process `Events` into a database
 * Create  `Queries` for `ReadModels`
 
-This tutorial expects you to have a basic understanding of .NET, C#, npm and the terminal.
+This tutorial expects you to have a basic understanding of .NET, C#, TypeScript, npm and the terminal.
 
-At the end you have an app that can manage bank users and their accounts.
+At the end you have an app that can manage bank users and tgeir accounts.
 
 This example based off of a [Banking sample.](https://github.com/dolittle-samples/Bank)
 

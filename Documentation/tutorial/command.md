@@ -49,8 +49,14 @@ This defined a simple `command` with the intent of opening a debit account and w
 
 `Commands` should be named in the imperative form in accordance to the inten of the user. For example `UpdateDebitAccounts` is a poor command name. It focuses on what will happen, rather than why the user wants o perform the action.
 
-### Concepts
-Create a folder `Concepts/Accounts/` and within it create a file called `CustomerId.cs` with the following content:
+### Add a Concept
+Create a folder `Concepts/Accounts/` 
+```console
+cd Banking/Concepts/
+mkdir Accounts
+```
+
+And within it create a file called `CustomerId.cs` with the following content:
 
 ```csharp
 using System;
@@ -67,6 +73,11 @@ namespace Concepts.Accounts
     }
 }
 ```
+Use [`concepts`]() to create meaningful types within your code with their own custom handling. 
+
+This `concept` declares our own custom type `CustomerId` and how it can be casted from various different types like `EventSourceId` and `Guid`.
+
+
 
 ### Input validation
 Within `Domain/Accounts/` create a file called `OpenDebitAccountInputValidation.cs` with the following content:
@@ -94,4 +105,7 @@ namespace Domain.Accounts
 }
 ```
 
-###
+With [`CommandInputValidatorFor`]() you can create input validators that run on the `commands` parameters before being created.
+
+In the [next](./command_handler) part of the tutorial you learn how to create a `CommandHandler`.
+
