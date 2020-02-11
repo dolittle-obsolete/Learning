@@ -6,9 +6,9 @@ author: Joel Hoisko
 weight: 2
 ---
 
-In this part you learn to write a `Command` to open a debit account and understand how Dolittle is built on [CQRS]().
+In this part you learn to write a `Command` to open a debit account and understand how Dolittle is built on CQRS.
 
-Dolittle is built on the principles of [CQRS](), [Event Driven Architecture]() and [Domain Driven Design]().
+Dolittle is built on the principles of CQRS, Event Driven Architecture and Domain Driven Design.
 
 ## CQRS
 
@@ -45,7 +45,7 @@ namespace Domain.Accounts
 }
 ```
 
-This defined a simple `command` with the intent of opening a debit account and with 2 properties, `CustomerId` and `Name`. A `command` has to implement the `ICommand` interface to get invoked up by the [DI]() system.
+This defined a simple `command` with the intent of opening a debit account and with 2 properties, `CustomerId` and `Name`. A `command` has to implement the `ICommand` interface to get invoked up by the DI system.
 
 `Commands` should be named in the imperative form in accordance to the inten of the user. For example `UpdateDebitAccounts` is a poor command name. It focuses on what will happen, rather than why the user wants o perform the action.
 
@@ -73,7 +73,7 @@ namespace Concepts.Accounts
     }
 }
 ```
-Use [`concepts`]() to create meaningful types within your code with their own custom handling. 
+Use `concepts` to create meaningful types within your code with their own custom handling. 
 
 This `concept` declares our own custom type `CustomerId` and how it can be casted from various different types like `EventSourceId` and `Guid`.
 
@@ -105,7 +105,7 @@ namespace Domain.Accounts
 }
 ```
 
-With [`CommandInputValidatorFor`]() you can create input validators that run on the `commands` parameters before being created.
+With `CommandInputValidatorFor` you can create input validators that run on the `commands` parameters before being created.
 
 In the [next](./command_handler) part of the tutorial you learn how to create a `CommandHandler`.
 
