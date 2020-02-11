@@ -1,22 +1,22 @@
 ---
-title: Getting Started Walkthrough
+title: Video Walkthrough
 description: Get started with the Dolittle platform
 keywords: Learning, Quickstart, Walkthrough, Guide
 author: Dolittle
 weight: 30
 ---
 
-Welcome to the Getting Started guide! In this guide, you will develop a ToDo app built on a Dolittle back end, and connect an Aurelia front end.
+Welcome to the video walkthrough! In this guide, you will develop a ToDo app built on a Dolittle back end, and connect an Aurelia front end.
 The lesson consists of three parts.
-- Getting up and running
-- Creating the back end
-- Creating the front end
+
+- 1. Getting up and running
+- 2. Creating the back end
+- 3. Creating the front end
 
 ## 1 - Getting started
 The first thing you need is to install the CLI tool. It is possible to use the Visual Studio Extension too, but the videos are using the CLI tool, so if you are just getting started with Dolittle, we recommend following the same steps as in this lesson.
 
-To get everything up and running, follow the Quickstart guide, and verify that everything works on your computer.
-Take a moment to go through the [Quickstart]({{< relref quickstart >}}) now.
+To get everything up and running, follow the [setup]({{< ref setup >}}), and verify that everything works on your computer.
 
 ## 2 - Creating the Back End
 Source code for this section [available here](https://github.com/TomasEkeli/ToDolittle) 

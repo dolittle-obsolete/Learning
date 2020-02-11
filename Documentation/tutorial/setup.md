@@ -6,7 +6,8 @@ author: Joel Hoisko
 weight: 1
 aliases:
     - /getting-started/quickstart/
-    - /getting-started/
+    - /getting-started/tutorial/
+    - /getting-started/tutorial/setup/
 ---
 
 This tutorial teaches the basics of using Dolittle to create a simple banking web-application. 
