@@ -23,7 +23,7 @@ This tutorial expects you to have a basic understanding of .NET, C#, TypeScript,
 
 At the end you'll have a simple ToDo application.
 
-This example based off of a [ToDo sample.](https://github.com/dolittle-samples/ToDolittle)
+This example based off of our [ToDo sample.](https://github.com/dolittle-samples/ToDolittle)
 
 
 ## Prerequisites

@@ -6,13 +6,14 @@ author: Joel Hoisko
 weight: 2
 ---
 
-In this part you learn to write a `Command` to open a debit account and understand how Dolittle is built on CQRS.
-
-Dolittle is built on the principles of CQRS, Event Driven Architecture and Domain Driven Design.
+In this part you learn to write a [`Command`]() to create a new item on the todo list. The `Command` will use [`Concepts`]() and [`Values`]() to have meaningful types as it's properties.
 
 ## CQRS
+Dolittle is built on the principles of [CQRS](), [Event Driven Architecture]() and [Domain Driven Design]().
 
 ### Command
+
+TODO: think of a nicer graph
 
 {{<mermaid align="left">}}
 graph TD;
@@ -21,91 +22,167 @@ graph TD;
     C -->D[DebitAccounts : AggregateRoot]
 {{< /mermaid >}}
 
-## Add a Command to our web app
-Inside `Banking/Domain/` create a new folder called `Accounts`
+
+### Add a Command to our web app
+Inside `ToDo/Domain/` create a new folder called `TodoItem`
 
 ```console
-cd Banking/Domain/
-mkdir Accounts
+cd ToDo/Domain/
+mkdir TodoItem
 ```
 
-Inside `Accounts` create a new file called `OpenDebitAccount.cs` with the following content:
+Inside `TodoItem` create a new file called `CreateItem.cs` with the following content:
 
 ```csharp
-using Concepts.Accounts;
+using Concepts.TodoItem;
 using Dolittle.Commands;
 
-namespace Domain.Accounts
+namespace Domain.TodoItem
 {
-    public class OpenDebitAccount : ICommand
+    public class CreateItem : ICommand
     {
-        public CustomerId CustomerId { get; set; }
-        public string Name { get; set; }
+        public TodoText Text { get; set; }
+        public ListId List { get; set; }
     }
 }
 ```
 
-This defined a simple `command` with the intent of opening a debit account and with 2 properties, `CustomerId` and `Name`. A `command` has to implement the `ICommand` interface to get invoked up by the DI system.
+This defines a simple `command` with the intent of creating a new item with 2 properties, `ListId` and `TodoText`. A `command` has to implement the `ICommand` interface to get invoked up by the DI system.
 
-`Commands` should be named in the imperative form in accordance to the inten of the user. For example `UpdateDebitAccounts` is a poor command name. It focuses on what will happen, rather than why the user wants o perform the action.
+`Commands` should be named in the imperative form in accordance to the inten of the user. For example `UpdateTodoItem` is a poor command name. It focuses on what will happen, rather than why the user wants to perform the action.
 
-### Add a Concept
-Create a folder `Concepts/Accounts/` 
+`Commands` don't use primitive's in their properties, rather they use `Values` and `Concepts`.
+
+#### Add TodoText Value
+Create a folder `Concepts/TodoItem/` 
 ```console
-cd Banking/Concepts/
-mkdir Accounts
+cd ToDo/Concepts/
+mkdir TodoItem
 ```
 
-And within it create a file called `CustomerId.cs` with the following content:
+And within it create a file called `TodoItem.cs` with the following content:
 
 ```csharp
-using System;
 using Dolittle.Concepts;
-using Dolittle.Runtime.Events;
 
-namespace Concepts.Accounts
+namespace Concepts.TodoItem
 {
-    public class CustomerId : ConceptAs<Guid>
+    public class TodoTask : Value<TodoTask>
     {
-        public static implicit operator CustomerId(Guid customerId) => new CustomerId { Value = customerId };
-        public static implicit operator EventSourceId(CustomerId accountId) => accountId.Value;
-        public static implicit operator CustomerId(EventSourceId eventSourceId) => new CustomerId { Value = eventSourceId.Value };
+        public TodoText Text { get; set; }
+        public TaskStatus Status { get; set; } = TaskStatus.NotDone;
     }
 }
 ```
-Use `concepts` to create meaningful types within your code with their own custom handling. 
 
-This `concept` declares our own custom type `CustomerId` and how it can be casted from various different types like `EventSourceId` and `Guid`.
+[`Values`]({{< ref "concepts_and_value_objects.md#value-objects" >}}) hold within them [`Concepts`]({{< ref "concepts_and_value_objects.md#conceptas-t" >}}). These are used to create meaningful types within your code with their own custom handling. 
 
+`Value` objects don't have any key that identifies them for they are identified by the properties that compromise it.
 
-
-### Input validation
-Within `Domain/Accounts/` create a file called `OpenDebitAccountInputValidation.cs` with the following content:
+Next create the required `concepts` that lay inside the `TodoTask`. Within `Concepts/TodoItem` folder create a file called `TodoText.cs` with the following content:
 
 ```csharp
-using System;
-using Concepts.Accounts;
-using Dolittle.Commands.Validation;
-using FluentValidation;
+using Dolittle.Concepts;
 
-namespace Domain.Accounts
+namespace Concepts.TodoItem
 {
-    public class OpenDebitAccountInputValidation : CommandInputValidatorFor<OpenDebitAccount>
+    public class TodoText : ConceptAs<string>
     {
-        public OpenDebitAccountInputValidation()
+        public static implicit operator TodoText(string value)
         {
-            RuleFor(_ => _.CustomerId)
-                .NotNull()
-                .NotEmpty()
-                .NotEqual((CustomerId)Guid.Empty).WithMessage("Customer identifier is required");
-
-            RuleFor(_ => _.Name).NotEmpty().WithMessage("Name is required");
+            return new TodoText {Value = value};
         }
     }
 }
 ```
 
-With `CommandInputValidatorFor` you can create input validators that run on the `commands` parameters before being created.
+This `concept` declares our own custom type `TodoText`. This type is not that interesting as it only converts from a `string` to a `TodoText`.
+
+Next create the concept of tracking a tasks status, wether it is done or not. Within `Concepts/TodoItem` folder create a file called `TaskStatus.cs` with the following content:
+
+```csharp
+using System;
+using Dolittle.Concepts;
+
+namespace Concepts.TodoItem
+{
+    public class TaskStatus : ConceptAs<string>
+    {
+        const string _done = "done";
+        const string _not_done = "not done";
+        const string _unknown = "unknown status";
+        public static readonly TaskStatus Done = new TaskStatus { Value = _done };
+        public static readonly TaskStatus NotDone = new TaskStatus { Value = _not_done };
+        public static readonly TaskStatus Unknown = new TaskStatus { Value = _unknown };
+    
+        public static implicit operator TaskStatus(string value)
+        {
+            if (_done.Equals(value, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return Done;
+            }
+            if (_not_done.Equals(value, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return NotDone;
+            }
+            return Unknown;
+        }
+    }
+}
+```
+
+These 2 concepts make up a single `TodoTask` `value`.
+
+#### Add ListId Concept
+Within `Concepts/TodoItem/` create a file called `ListId.cs` with the following content:
+
+```csharp
+using Dolittle.Concepts;
+using System;
+
+namespace Concepts.TodoItem
+{
+    public class ListId : ConceptAs<Guid>
+    {
+        public static ListId None = default(Guid);
+
+        public static implicit operator ListId(Guid value)
+        {
+            return new ListId {Value = value};
+        }
+    }
+}
+```
+
+Now the `CreateItem` command is complete.
+
+### Input validation
+Each `command` goes through it's own [input validator]() before being created.
+
+Within `Domain/TodoItem/` create a file called `CreateItemInputValidator.cs` with the following content:
+
+```csharp
+using Dolittle.Commands.Validation;
+using FluentValidation;
+
+namespace Domain.TodoItem
+{
+    public class CreateItemInputValidator : CommandInputValidatorFor<CreateItem>
+    {
+        public CreateItemInputValidator()
+        {
+            RuleFor(cmd => cmd.List)
+                .NotEmpty()
+                .WithMessage("Please set the list to add to");
+
+            RuleFor(cmd => cmd.Text)
+                .NotEmpty()
+                .WithMessage("Need some text in the todo item");
+        }
+    }
+}
+```
+
 
 In the [next](./command_handler) part of the tutorial you learn how to create a `CommandHandler`.
 
