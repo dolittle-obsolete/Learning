@@ -9,50 +9,87 @@ weight: 5
 ## EventProcessor
 
 ### Add an EventProcessor
-Inside `Banking/Read/` create a new folder called `Accounts`
+Inside `ToDo/Read/` create a new folder called `TodoItem`
 
 ```console
-cd Banking/Read/
-mkdir Accounts
+cd ToDo/Read/
+mkdir TodoItem
 ```
 
-Inside `Accounts` create a file called `AccountEventProcessors.cs` with the following content:
+Inside `TodoItem` create a file called `ItemListProcessor.cs` with the following content:
 
 ```csharp
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Concepts.TodoItem;
 using Dolittle.Events.Processing;
-using Dolittle.Runtime.Events;
-using Events.Accounts;
+using Dolittle.ReadModels;
+using Events.TodoItem;
 using MongoDB.Driver;
 
-namespace Read.Accounts
+namespace Read.TodoItem
 {
-    public class AccountEventProcessors : ICanProcessEvents
+    public class ItemListProcessor : ICanProcessEvents
     {
-        private readonly IMongoCollection<Account> _collection;
+        readonly IAsyncReadModelRepositoryFor<AvailableLists> _repositoryForAvailableLists;
 
-        public AccountEventProcessors(IMongoCollection<Account> collection)
+        public ItemListProcessor(
+            IAsyncReadModelRepositoryFor<AvailableLists> repositoryForAvailableLists
+        )
         {
-            _collection = collection;
+            _repositoryForAvailableLists = repositoryForAvailableLists;
         }
 
-        [EventProcessor("c93703be-e2c7-4df5-9c60-45205b47489d")]
-        public void Process(DebitAccountOpened @event, EventMetadata eventMetadata)
+        [EventProcessor("eac6222e-1e7e-0fe2-2213-2715c8ebffce")]
+        public void Process(ItemCreated evt)
         {
-            _collection.InsertOne(new Account
+            Task.Run(async() =>
             {
-                Id = @event.AccountId,
-                CustomerId = eventMetadata.EventSourceId,
-                Type = AccountType.Debit
+                var allLists = await _repositoryForAvailableLists.GetById(default(Guid));
+
+                if (allLists != null)
+                {
+                    if (!allLists.Lists.Any(list => list == evt.ListId))
+                    {
+                        allLists.Lists.Add(evt.ListId);
+                        await _repositoryForAvailableLists.Update(allLists);
+                    }
+                }
+                else
+                {
+                    allLists = new AvailableLists
+                    {
+                        Id = default,
+                        Lists = new ListId[]
+                        {
+                        evt.ListId
+                        }
+                    };
+
+                    await _repositoryForAvailableLists.Insert(allLists);
+                }
             });
         }
 
-        [EventProcessor("cfe42fdf-da6b-412d-a112-846e807802b7")]
-        public void Process(BalanceChanged @event, EventMetadata eventMetadata)
+        [EventProcessor("25583425-CC44-4EDD-ABA5-337418EE7FB9")]
+        public void Process(ListDeleted evt)
         {
-            var updateDefinition = Builders<Account>.Update
-                .Set(_ => _.Balance, @event.NewBalance);
+            Task.Run(async() =>
+            {
+                var allLists = await _repositoryForAvailableLists.GetById(default);
 
-            _collection.UpdateOne(_ => _.Id == eventMetadata.EventSourceId, updateDefinition);
+                if (allLists != null)
+                {
+                    allLists.Lists =
+                        allLists
+                        .Lists
+                        .Where(list => list != evt.ListId)
+                        .ToList();
+
+                    await _repositoryForAvailableLists.Update(allLists);
+                }
+            });
         }
     }
 }
@@ -63,22 +100,20 @@ namespace Read.Accounts
 
 
 ### Add a ReadModel
-Within `Read/Accounts/` create a file called `Account.cs` with the following content:
+Within `Read/TodoItem/` create a file called `AvailableLists.cs` with the following content:
 
 ```csharp
-using Concepts.Accounts;
+using System;
+using System.Collections.Generic;
+using Concepts.TodoItem;
 using Dolittle.ReadModels;
 
-namespace Read.Accounts
+namespace Read.TodoItem
 {
-    public class Account : IReadModel
+    public class AvailableLists : IReadModel
     {
-        public AccountId Id { get; set; }
-        public CustomerId CustomerId {  get; set; }
-
-        public AccountType Type { get; set; }
-
-        public double Balance { get; set; }
+        public Guid Id { get; set; }
+        public IList<ListId> Lists { get; set; }
     }
 }
 ```

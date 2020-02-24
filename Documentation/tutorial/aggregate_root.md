@@ -7,111 +7,85 @@ weight: 3
 ---
 
 
-In this part you learn to write an `AggregateRoot` and a `CommandHandler` for the `OpenDebitAccount` `command`.
+In this part you learn to write an [`AggregateRoot`]() and a [`CommandHandler`]() to apply business logic to your ToDo application.
 
 ### AggregateRoots, CommandHandler and Commands
 TODO diagram or explanation on how they tie together etc
 
 ### Add a `CommandHandler`
-Within `Domain/Accounts/` create a file called `DebitAccountsCommandHandlers.cs` with the following content:
+Within `Domain/TodoItem/` create a file called `ItemHandlers.cs` with the following content:
 
 ```csharp
-using System;
 using Dolittle.Commands.Handling;
 using Dolittle.Domain;
 
-namespace Domain.Accounts
+namespace Domain.TodoItem
 {
-    public class DebitAccountsCommandHandlers : ICanHandleCommands
+    public class ItemHandler : ICanHandleCommands
     {
-        private readonly IAggregateOf<DebitAccounts> _debitAccounts;
+        // hold's a list of all the TodoList aggregate roots
+        readonly IAggregateOf<TodoList>  _todoList;
 
-        public DebitAccountsCommandHandlers(IAggregateOf<DebitAccounts> debitAccounts)
+        public ItemHandler(IAggregateOf<TodoList>  todoList)
         {
-            _debitAccounts = debitAccounts;
+             _todoList =  todoList;
         }
 
-        public void Handle(OpenDebitAccount command)
+        public void Handle(CreateItem cmd)
         {
-            _debitAccounts
-                .Rehydrate(command.CustomerId)
-                .Perform(_ => _.Open(Guid.NewGuid(), command.Name));
+            _todoList
+                .Rehydrate(cmd.List.Value)
+                .Perform(_ => _.Add(cmd.Text));
+                
         }
     }
 }
 ```
-This `CommandHandler` handles the incoming `OpenDebitAccount` command and calls for the respective `AggregateRoot` with the commands parameters.
+
+This `CommandHandler` handles the incoming `CreateItem` command and calls for the respective `AggregateRoot` with the commands parameters.
 
 #### IAggegateOf
 
+TODO: explain quicly Rehydrate and perform
 
 
 ### Add an `AggregateRoot`
-Within `Domain/Accounts/` create a file called `DebitAccounts.cs` with the following content:
+Within `Domain/TodoItem/` create a file called `TodoList.cs` with the following content:
 
 ```csharp
-using System.Collections.Generic;
-using Concepts.Accounts;
+using Concepts.TodoItem;
 using Dolittle.Domain;
-using Dolittle.Rules;
 using Dolittle.Runtime.Events;
-using Events.Accounts;
+using Events.TodoItem;
 
-namespace Domain.Accounts
+namespace Domain.TodoItem
 {
-    public class DebitAccounts : AggregateRoot
+    public class TodoList : AggregateRoot
     {
-        static Reason AccountNameAlreadyExists = Reason.Create("cd13df2e-daad-4f5b-9bee-2fff38baec21", "Account with {Name} already exists");
-        readonly List<string>    _accounts = new List<string>();
-
-        public DebitAccounts(EventSourceId eventSourceId) : base(eventSourceId) { }
-
-        public void Open(AccountId accountId, string name)
-        {
-            if( Evaluate(() => AccountNameShouldBeUnique(name)) )
-                Apply(new DebitAccountOpened(accountId, name));
+        public TodoList(EventSourceId id) : base(id)
+        { 
+            
         }
 
-        private RuleEvaluationResult AccountNameShouldBeUnique(string name)
+        public void Add(TodoText text)
         {
-            if( _accounts.Contains(name) ) return RuleEvaluationResult.Fail(name, AccountNameAlreadyExists.WithArgs(new{Name=name}));
-            return RuleEvaluationResult.Success;
-        }
+            var createdEvent = new ItemCreated(
+                EventSourceId,
+                text
+            );
 
-        void On(DebitAccountOpened @event)
-        {
-            _accounts.Add(@event.Name);
+            Apply(createdEvent);
         }
     }
 }
 ```
+
+An [`AggregateRoot`]({{< ref "/runtime/runtime/domain_driven_design/aggregate_root" >}}) is an object or collection of objects ([entities]({{< ref "concepts_and_value_objects.md#entities" >}}) and [value objects]({{< ref "concepts_and_value_objects.md#value-objects" >}}) that need to be treated as a single unit for business logic.
+
+The `aggregate root` also takes care of instantiating and applying `Events`.
 
 #### Add rules to AggregateRoot
-In the `DebitAccounts` add the following :
-
-#### Naming
-
-#### Listening to events
-
-#### AccountID Concept
-Within `Concepts/Accounts/` create a file called `AccountId.cs` with the following content:
-
-```csharp
-using System;
-using Dolittle.Concepts;
-using Dolittle.Runtime.Events;
-
-namespace Concepts.Accounts
-{
-    public class AccountId : ConceptAs<Guid>
-    {
-        public static implicit operator AccountId(Guid accountId) => new AccountId { Value = accountId };
-        public static implicit operator EventSourceId(AccountId accountId) => accountId.Value;
-        public static implicit operator AccountId(EventSourceId eventSourceId) => new AccountId { Value = eventSourceId.Value };
-    }
-}
-```
-
+TODO
 
 In the [next](./event) part of the tutorial you learn how to create an `Event`.
 

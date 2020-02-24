@@ -7,36 +7,39 @@ weight: 4
 ---
 
 ## Event Driven Architecture
+TODO
 
 ### Add an event
-Inside `Banking/Events/` create a new folder called `Accounts`
+Inside `ToDo/Events/` create a new folder called `TodoItem`
 
 ```console
-cd Banking/Events/
-mkdir Accounts
+cd ToDo/Events/
+mkdir TodoItem
 ```
 
-Inside `Accounts` create a file called `DebitAccountOpened.cs` with the following content:
+Inside `TodoItem` create a file called `ItemCreated.cs` with the following content:
 
 ```csharp
 using System;
 using Dolittle.Events;
 
-namespace Events.Accounts
+namespace Events.TodoItem
 {
-    public class DebitAccountOpened : IEvent
+    public class ItemCreated : IEvent
     {
-        public DebitAccountOpened(Guid accountId, string name)
+        public ItemCreated(Guid listId, string text)
         {
-            AccountId = accountId;
-            Name = name;
+            ListId = listId;
+            Text = text;
         }
 
-        public Guid AccountId { get; }
-        public string Name { get; }
+        public Guid ListId { get; }
+        public string Text { get; }
     }
 }
 ```
+
+[`Events`]({{< ref domain_events >}}) are representations of facts that have happened within your [domain](). These events will propagate through your system to be listened by [`EventProcessors`]()
 
 ### Why not Concepts?
 

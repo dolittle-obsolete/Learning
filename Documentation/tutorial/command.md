@@ -183,6 +183,5 @@ namespace Domain.TodoItem
 }
 ```
 
-
-In the [next](./command_handler) part of the tutorial you learn how to create a `CommandHandler`.
+In the [next](./aggregate_root) part of the tutorial you learn how to create a `AggregateRoot` and `CommandHandler`.
 
