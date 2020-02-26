@@ -41,7 +41,7 @@ There is also an [extension](https://marketplace.visualstudio.com/items?itemName
 {{% /notice %}}
 
 1. Install the CLI tool
-```console
+```shell
 npm install -g @dolittle/cli
 ```
 {{% notice tip %}}
@@ -49,7 +49,7 @@ It is recommended to install the CLI tool globally so that you can use it anywhe
 {{% /notice %}}
 2. Test that the CLI tool works
 Run the CLI tool in your command window, it shows the available commands for you to use:
-```console
+```shell
 dolittle
 ```
 ![Dolittle CLI](../../images/dolittleCLI.png)
@@ -62,23 +62,23 @@ This part teaches you how to create a blank Dolittle web application with the [D
 Use the CLI tool to create a new [application]().
 
 The first thing you need is a folder for your application. Create a new folder on your computer, name it `ToDoApplication` and change into that directory.
-```console
+```shell
 mkdir ToDoApplication
 cd ToDoApplication
 ```
 
 To create a new application using the CLI tool, use the `dolittle create application` command.
-```console
+```shell
 dolittle create application ToDoApplication
 ```
 
 {{% notice tip %}}
 If you get an error saying:
-```console
+```shell
 No application boilerplates found for language 'csharp'
 ```
 You can fix it by running the command:
-```console
+```shell
 dolittle boilerplates installed
 ```
 {{% /notice %}}
@@ -93,7 +93,7 @@ The basic application scaffolding has now been created. The folder structure sho
 Each application needs to have one or more [**Bounded Contexts**](). Use the CLI tool to add a Bounded Context to our application.
 
 Run this command inside the _ToDoApplication_ directory and choose `MongoDB` for your read models/event store and `TypeScript Aurelia` for your web interaction layer:
-```console
+```shell
 dolittle create boundedcontext ToDo
 ? Choose the resource implementation for read models MongoDB
 ? Choose the resource implementation for event store MongoDB
@@ -126,20 +126,20 @@ Your [project structure](./structure) should now look like this:
 
 ### 3) Setup and build the front-end
 Navigate to the `Web` folder and install all the dependencies:
-```console
+```shell
 cd ToDo/Web
 npm install
 ```
 
 Then build the front-end:
-```console
+```shell
 cd ToDo/Web
 npm run-script build
 ```
 
 ### 4) Setup a MongoDB database
 Start a local docker container that contains a blank MongoDB 4.0.12 server running on port 27017:
-```console
+```shell
 docker run -d -p 27017:27017 mongo:4.0.12
 ```
 
@@ -149,14 +149,14 @@ You can also download a GUI for MongoDB like [Compass](https://www.mongodb.com/p
 
 ### 5) Build and run the bounded context
 Now you have basic Dolittle application [structure](). To test it out, run the following commands from the `ToDoApplication` root.
-```console
+```shell
 cd ToDo/Core/
 dotnet run
 ```
 
 Last lines of the output should be something like this:
 
-```console
+```shell
 Hosting environment: Development
 Content root path: /home/joel/Dolittle/TutorialExample/ToDoApplication/ToDo/Core
 Now listening on: http://localhost:5000

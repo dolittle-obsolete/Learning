@@ -11,7 +11,7 @@ weight: 5
 ### Add an EventProcessor
 Inside `ToDo/Read/` create a new folder called `TodoItem`
 
-```console
+```shell
 cd ToDo/Read/
 mkdir TodoItem
 ```

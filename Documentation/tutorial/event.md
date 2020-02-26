@@ -12,7 +12,7 @@ TODO
 ### Add an event
 Inside `ToDo/Events/` create a new folder called `TodoItem`
 
-```console
+```shell
 cd ToDo/Events/
 mkdir TodoItem
 ```

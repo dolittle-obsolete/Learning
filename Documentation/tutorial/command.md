@@ -26,7 +26,7 @@ graph TD;
 ### Add a Command to our web app
 Inside `ToDo/Domain/` create a new folder called `TodoItem`
 
-```console
+```shell
 cd ToDo/Domain/
 mkdir TodoItem
 ```
@@ -55,7 +55,7 @@ This defines a simple `command` with the intent of creating a new item with 2 pr
 
 #### Add TodoText Value
 Create a folder `Concepts/TodoItem/` 
-```console
+```shell
 cd ToDo/Concepts/
 mkdir TodoItem
 ```
