@@ -10,20 +10,27 @@ weight: 6
 
 ### Add a Query
 
-Within `Read/Accounts/` create a file called `AllDebitAccounts.cs` with the following content:
+Within `Read/TodoItem/` create a file called `AllAvailableLists.cs` with the following content:
 
 ```csharp
+using System;
 using System.Linq;
 using Dolittle.Queries;
-using MongoDB.Driver;
+using Dolittle.ReadModels;
 
-namespace Read.Accounts
+namespace Read.TodoItem
 {
-    public class AllDebitAccounts : IQueryFor<Account>
+    public class AllAvailableLists : IQueryFor<AvailableLists>
     {
-        public AllDebitAccounts(IMongoCollection<Account> collection) => Query = collection?.Find(_ => _.Type == AccountType.Debit).ToList().AsQueryable();
+        readonly IReadModelRepositoryFor<AvailableLists> _repositoryForAvailableLists;
 
-        public IQueryable<Account> Query { get; }
+        public AllAvailableLists(IReadModelRepositoryFor<AvailableLists> repositoryForAvailableLists)
+        {
+            _repositoryForAvailableLists = repositoryForAvailableLists;
+        }
+
+        // Todo:
+        public IQueryable<AvailableLists> Query => _repositoryForAvailableLists.Query;
     }
 }
 ```

@@ -1,16 +1,18 @@
 ---
-title: Setup
-description: Initial Dolittle setup
-keywords: Learning, Quickstart, CLI, Tools
-author: Joel Hoisko
+title: Get started
+description: Get started with the Dolittle framework
+keywords: Learning, Quickstart, CLI, setup, prerequisites, how to setup, guide, walkthrough
+author: joel
 weight: 1
+type: "space"
+icon: "ti-time"
 aliases:
     - /getting-started/quickstart/
     - /getting-started/tutorial/
     - /getting-started/tutorial/setup/
 ---
 
-This tutorial teaches the basics of using Dolittle to create a simple banking web-application. 
+This tutorial teaches the basics of using Dolittle to create a simple ToDo web-application. 
 
 You learn how to:
 
@@ -21,15 +23,16 @@ You learn how to:
 
 This tutorial expects you to have a basic understanding of .NET, C#, TypeScript, npm and the terminal.
 
-At the end you have an app that can manage bank users and tgeir accounts.
+At the end you'll have a simple ToDo application.
 
-This example based off of a [Banking sample.](https://github.com/dolittle-samples/Bank)
+This example based off of our [ToDo sample.](https://github.com/dolittle-samples/ToDolittle)
 
-## Prerequisites
 
-* [.NET Core SDK 2.2](https://dotnet.microsoft.com/download/dotnet-core/2.2)
-* [Node.js >=12](https://nodejs.org/en/download/)
-* [Docker](https://www.docker.com/products/docker-desktop)
+## Setup
+
+* [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+* [Node.JS >=12](https://nodejs.org/en/download/) for the CLI
+* [Docker](https://www.docker.com/products/docker-desktop) for running your local database
 
 ### Install the CLI
 
@@ -40,7 +43,7 @@ There is also an [extension](https://marketplace.visualstudio.com/items?itemName
 {{% /notice %}}
 
 1. Install the CLI tool
-```console
+```shell
 npm install -g @dolittle/cli
 ```
 {{% notice tip %}}
@@ -48,7 +51,7 @@ It is recommended to install the CLI tool globally so that you can use it anywhe
 {{% /notice %}}
 2. Test that the CLI tool works
 Run the CLI tool in your command window, it shows the available commands for you to use:
-```console
+```shell
 dolittle
 ```
 ![Dolittle CLI](../../images/dolittleCLI.png)
@@ -60,24 +63,24 @@ This part teaches you how to create a blank Dolittle web application with the [D
 ### 1) Create a new application
 Use the CLI tool to create a new [application]().
 
-The first thing you need is a folder for your application. Create a new folder on your computer, name it `BankingApplication` and change into that directory.
-```console
-mkdir BankingApplication
-cd BankingApplication
+The first thing you need is a folder for your application. Create a new folder on your computer, name it `ToDoApplication` and change into that directory.
+```shell
+mkdir ToDoApplication
+cd ToDoApplication
 ```
 
 To create a new application using the CLI tool, use the `dolittle create application` command.
-```console
-dolittle create application BankingApplication
+```shell
+dolittle create application ToDoApplication
 ```
 
 {{% notice tip %}}
 If you get an error saying:
-```console
+```shell
 No application boilerplates found for language 'csharp'
 ```
 You can fix it by running the command:
-```console
+```shell
 dolittle boilerplates installed
 ```
 {{% /notice %}}
@@ -91,12 +94,12 @@ The basic application scaffolding has now been created. The folder structure sho
 ### 2) Create a bounded context
 Each application needs to have one or more [**Bounded Contexts**](). Use the CLI tool to add a Bounded Context to our application.
 
-Run this command inside the _BankingApplication_ directory and choose `MongoDB` for your read models/event store and `Javascript Aurelia` for your web interaction layer:
-```console
-dolittle create boundedcontext Banking
+Run this command inside the _ToDoApplication_ directory and choose `MongoDB` for your read models/event store and `TypeScript Aurelia` for your web interaction layer:
+```shell
+dolittle create boundedcontext ToDo
 ? Choose the resource implementation for read models MongoDB
 ? Choose the resource implementation for event store MongoDB
-? Choose web interaction layer Javascript Aurelia Interaction Adornment
+? Choose web interaction layer TypeScript Aurelia Interaction Adornment
 ```
 
 A bounded context is now added to the application, located inside the folder. This folder is based on the Bounded Context boilerplate and contains everything you need to run a Dolittle template application.
@@ -106,8 +109,8 @@ Your [project structure](./structure) should now look like this:
 .
 ├── .dolittlerc
 ├── application.json
-└── Banking
-    ├── Banking.sln
+└── ToDo
+    ├── ToDo.sln
     ├── bounded-context.json
     ├── Concepts
     ├── Core
@@ -125,20 +128,20 @@ Your [project structure](./structure) should now look like this:
 
 ### 3) Setup and build the front-end
 Navigate to the `Web` folder and install all the dependencies:
-```console
-cd Banking/Web
+```shell
+cd ToDo/Web
 npm install
 ```
 
 Then build the front-end:
-```console
-cd Banking/Web
+```shell
+cd ToDo/Web
 npm run-script build
 ```
 
 ### 4) Setup a MongoDB database
 Start a local docker container that contains a blank MongoDB 4.0.12 server running on port 27017:
-```console
+```shell
 docker run -d -p 27017:27017 mongo:4.0.12
 ```
 
@@ -147,17 +150,17 @@ You can also download a GUI for MongoDB like [Compass](https://www.mongodb.com/p
 {{% /notice %}}
 
 ### 5) Build and run the bounded context
-Now you have basic Dolittle application [structure](). To test it out, run the following commands from the `BankingApplication` root.
-```console
-cd Banking/Core/
+Now you have basic Dolittle application [structure](). To test it out, run the following commands from the `ToDoApplication` root.
+```shell
+cd ToDo/Core/
 dotnet run
 ```
 
 Last lines of the output should be something like this:
 
-```console
+```shell
 Hosting environment: Development
-Content root path: /home/joel/Dolittle/TutorialExample/BankingApplication/Banking/Core
+Content root path: /home/joel/Dolittle/TutorialExample/ToDoApplication/ToDo/Core
 Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 
