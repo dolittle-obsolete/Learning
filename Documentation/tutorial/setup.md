@@ -1,9 +1,11 @@
 ---
-title: Setup
-description: Initial Dolittle setup
-keywords: Learning, Quickstart, CLI, Tools
-author: Joel Hoisko
+title: Get started
+description: Get started with the Dolittle framework
+keywords: Learning, Quickstart, CLI, setup, prerequisites, how to setup, guide, walkthrough
+author: joel
 weight: 1
+type: "space"
+icon: "ti-time"
 aliases:
     - /getting-started/quickstart/
     - /getting-started/tutorial/
@@ -26,11 +28,11 @@ At the end you'll have a simple ToDo application.
 This example based off of our [ToDo sample.](https://github.com/dolittle-samples/ToDolittle)
 
 
-## Prerequisites
+## Setup
 
-* [.NET Core SDK 2.2](https://dotnet.microsoft.com/download/dotnet-core/2.2)
-* [Node.JS >=12](https://nodejs.org/en/download/)
-* [Docker](https://www.docker.com/products/docker-desktop)
+* [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+* [Node.JS >=12](https://nodejs.org/en/download/) for the CLI
+* [Docker](https://www.docker.com/products/docker-desktop) for running your local database
 
 ### Install the CLI
 
