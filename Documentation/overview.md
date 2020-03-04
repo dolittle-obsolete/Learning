@@ -3,7 +3,7 @@ title: Overview
 description: Learn about the Dolittle framework
 keywords: overview, dolittle, why dolittle, what is dolittle, 
 author: Dolittle
-weight: 2
+weight: 1
 type: "space"
 #icon: "ti-blackboard"
 #icon: "ti-book"

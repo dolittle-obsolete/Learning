@@ -3,7 +3,7 @@ title: Get started
 description: Get started with the Dolittle framework
 keywords: Learning, Quickstart, CLI, setup, prerequisites, how to setup, guide, walkthrough
 author: joel
-weight: 1
+weight: 2
 type: "space"
 icon: "ti-time"
 aliases:
