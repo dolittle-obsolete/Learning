@@ -3,7 +3,7 @@ title: Add an event
 description: Learn to add an event
 keywords: Learning, tutorial, event
 author: Joel Hoisko
-weight: 4
+weight: 5
 ---
 
 ## Event Driven Architecture

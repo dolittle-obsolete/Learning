@@ -3,7 +3,7 @@ title: Add a read model
 description: Learn to add a ReadModel
 keywords: Learning, tutorial, ReadModel, eventprocessor
 author: Joel Hoisko
-weight: 5
+weight: 6
 ---
 
 ## EventProcessor

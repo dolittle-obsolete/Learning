@@ -3,7 +3,7 @@ title: Add a command
 description: Learn to add a command
 keywords: Learning, tutorial, command
 author: Joel Hoisko
-weight: 2
+weight: 3
 ---
 
 In this part you learn to write a [`Command`]() to create a new item on the todo list. The `Command` will use [`Concepts`]() and [`Values`]() to have meaningful types as it's properties.

@@ -3,7 +3,7 @@ title: Add an aggregate root
 description: Learn to add an aggregate root
 keywords: Learning, tutorial, aggregate root
 author: Joel Hoisko
-weight: 3
+weight: 4
 ---
 
 

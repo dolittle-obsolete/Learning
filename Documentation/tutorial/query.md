@@ -3,7 +3,7 @@ title: Add a query
 description: Learn to add a query
 keywords: Learning, tutorial, ReadModel, Query
 author: Joel Hoisko
-weight: 6
+weight: 7
 ---
 
 ## Query
