@@ -16,7 +16,7 @@ aliases:
 Dolittle.io is an open-source, decentralized, distributed and event-driven microservice framework. The framework has been designed to build Line of Business applications without sacrificing architectural quality, code quality, maintainability or scalability.
 
 {{% notice note %}}
-The framework is a collection of 'C# Nuget packages' stored at[https://www.nuget.org/profiles/Dolittle](https://www.nuget.org/profiles/Dolittle)
+The framework is a collection of 'C# Nuget packages' stored at [https://www.nuget.org/profiles/Dolittle](https://www.nuget.org/profiles/Dolittle)
 {{% /notice %}}
 
 
