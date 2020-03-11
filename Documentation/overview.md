@@ -20,8 +20,8 @@ The framework is a collection of C# Nuget packages. Find them from our [Nuget pr
 {{% /notice %}}
 
 
-### Event Driven Architecture
-Dolittle is based on an [Event Drive Architecture](https://en.wikipedia.org/wiki/Event-driven_architecture) (EDA). This is an approach to system/application design that focusses on handling, sending, processing and persisting events. An event is defined as “something interesting that has happened in a system” and most usually represents a state change or a notification.
+### Event-Driven Architecture
+Dolittle is based on an [Event-Driven Architecture] (https://en.wikipedia.org/wiki/Event-driven_architecture) (EDA). This is an approach to system/application design that focusses on handling, sending, processing and persisting events. An event is defined as “something interesting that has happened in a system” and most usually represents a state change or a notification.
 
 EDA promotes loose coupling because the producers of events do not know about subscribers that are listening to this event. This makes an Event-Driven Architecture more suited to today’s distributed applications than the traditional request-response model.
 
