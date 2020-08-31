@@ -13,6 +13,10 @@ aliases:
     - /getting-started/
 ---
 
+{{% notice warning %}}
+We're currently transitioning our platform and our documentation hasn't caught up with that yet. Follow our [GitHub repo](https://github.com/dolittle/Documentation) for updates!
+{{% /notice %}}
+
 Dolittle is an open-source, decentralized, distributed and event-driven microservice framework. The framework has been designed to build Line of Business applications without sacrificing architectural quality, code quality, maintainability or scalability.
 
 {{% notice note %}}

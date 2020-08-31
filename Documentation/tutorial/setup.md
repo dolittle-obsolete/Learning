@@ -11,6 +11,9 @@ aliases:
     - /getting-started/tutorial/
     - /getting-started/tutorial/setup/
 ---
+{{% notice warning %}}
+We're currently transitioning our platform and our documentation hasn't caught up with that yet. Follow our [GitHub repo](https://github.com/dolittle/Documentation) for updates!
+{{% /notice %}}
 
 This tutorial teaches the basics of using Dolittle to create a simple ToDo web-application. 
 
