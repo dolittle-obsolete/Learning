@@ -33,7 +33,7 @@ npm install typescript
 npm install @dolittle/sdk
 ```
 
-### Create a client
+### Setup the SDK
 Create a client:
 ```typescript
 import { Client } from '@dolittle/sdk';
