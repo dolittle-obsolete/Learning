@@ -24,6 +24,7 @@ This tutorial expects you to have a basic understanding of TypeScript, npm and t
 
 ## Setup
 Install Node.JS and Docker on your local machine.
+
 * [Node.JS >=12](https://nodejs.org/en/download/)
 * [Docker](https://www.docker.com/products/docker-desktop)
 
