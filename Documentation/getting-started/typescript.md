@@ -6,11 +6,14 @@ author: joel, jakob, sindre
 weight: 2
 ---
 
-Welcome to the Dolittle TypeScript tutorial for the JavaScript.SDK!
-
-In this tutorial you learn how to write a microservice that commits an event and handles the committed event.
+Welcome to the Dolittle TypeScript tutorial for the JavaScript.SDK where you learn how to write a microservice that keeps track of foods prepared by the chefs.
 
 This tutorial expects you to have a basic understanding of TypeScript, npm and Docker.
+
+After this tutorial you will have a:
+
+* Running Dolittle Runtime and MongoDB
+* Microservice that commits and handles events
 
 ### What you'll need
 Install and configure the required prerequisites locally first:
@@ -27,35 +30,36 @@ $ npm install @dolittle/sdk
 ```
 
 ### Create an event type
-Create an event type and give it an EventType with a GUID.
+First we'll create an event type that represents that a dish has been prepared. Events represents _"facts that have happened"_, making them immutable by definition.
 
 ```typescript
-// MySpicyEvent.ts
+// DishPrepared.ts
 import { eventType } from '@dolittle/sdk.events';
 
 @eventType('1844473f-d714-4327-8b7f-5b3c2bdfc26a')
-export class MySpicyEvent {
-    myString: string;
-    myNumber: number;
+export class DishPrepared {
+    Dish: string;
+    Chef: number;
 }
 ```
 
-The `@eventType('1844473f-d714-4327-8b7f-5b3c2bdfc26a')` identifies this event so that it can be serialized.
+The `EventType("1844473f-d714-4327-8b7f-5b3c2bdfc26a")` attribute identifies this event so that it can be deserialized in other Microservices in the future.
 
 ### Create an event handler
-Create an event handler to handle your event and give it a GUID.
+We need something that can respond to when a dish has been prepared. Event handlers react to events that have been committed succesfully.
+
 ```typescript
-// MySpicyEventHandler.ts
+// DishPreparedHandler.ts
 import { EventContext } from '@dolittle/sdk.events';
 import { eventHandler, handles } from '@dolittle/sdk.events.handling';
-import { MySpicyEvent } from './MySpicyEvent';
+import { DishPrepared } from './DishPrepared';
 
 @eventHandler('f2d366cf-c00a-4479-acc4-851e04b6fbba')
-export class MySpicyEventHandler {
+export class DishPreparedHandler {
 
-    @handles(MySpicyEvent)
-    mySpicyEvent(event: MySpicyEvent, eventContext: EventContext) {
-        console.log('MySpicyEvent was handled.', event);
+    @handles(DishPrepared)
+    DishPrepared(event: DishPrepared, eventContext: EventContext) {
+        console.log(`${event.Chef} has prepared ${event.Dish}. Yummm!`);
     }
 }
 ```
@@ -64,28 +68,29 @@ The `@eventHandler('f2d366cf-c00a-4479-acc4-851e04b6fbba')` identifies this even
 
 ### Connect the client and commit an event
 Create a client that connects to the Runtime for a Microservice with the id `'f39b1f61-d360-4675-b859-53c05c87c0e6'`. This Microservice is predefined in the Runtime.
+We then associate our events and event handlers to the client before a delicious taco has been prepared.
 
 ```typescript
 import { EventContext } from '@dolittle/sdk.events';
-import { MySpicyEvent } from './MySpicyEvent';
-import { MySpicyEventHandler } from './MySpicyEventHandler';
+import { DishPrepared } from './DishPrepared';
+import { DishPreparedHandler } from './DishPreparedHandler';
 
 const client = Client
     .forMicroservice('f39b1f61-d360-4675-b859-53c05c87c0e6')
     .withEventTypes(eventTypes =>
-        eventTypes.associate(MySpicyEvent))
+        eventTypes.associate(DishPrepared))
     .withEventHandlers(builder => {
-        builder.registerEventHandler(MySpicyEventHandler);
+        builder.registerEventHandler(DishPreparedHandler);
     })
     .build();
 
-const mySpicyEvent: MySpicyEvent = {
-    myString: 'hot kimchi bowl'
-    myNumber: 15
+const DishPrepared: DishPrepared = {
+    Dish: 'Bean Blaster Taco',
+    Chef: 'Mr. Taco'
 }
 client.EventStore
     .forTenant('445...')
-    .commit(mySpicyEvent, 'bfe6f6e4-ada2-4344-8a3b-65a3e1fe16e9');
+    .commit(DishPrepared, 'bfe6f6e4-ada2-4344-8a3b-65a3e1fe16e9');
 ```
 
 ### Start the Dolittle Runtime
