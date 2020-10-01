@@ -1,6 +1,6 @@
 ---
 title: Tutorials
-description: Get started with the Dolittle framework
+description: Get started with the Dolittle library
 keywords: overview, dolittle, why dolittle, what is dolittle, 
 author: Dolittle
 weight: 1
@@ -9,11 +9,16 @@ icon: "ti-direction"
 repository: https://github.com/dolittle/Learning
 aliases:
     - /getting-started/
+    - /getting-started/getting-started/
+    - /getting-started/quickstart/
+    - /getting-started/tutorial/
+    - /getting-started/tutorial/setup/
+    - /getting-started/gettingstarted/
 ---
 This page lists the tutorials available for the different SDKs.
 
-- Getting started for [TypeScript]({{< ref typescript >}})
-- Getting started for [C#]({{< ref csharp >}})
+- Getting started for [TypeScript SDK]({{< ref typescript >}})
+- Getting started for [C# & .NET SDK]({{< ref csharp >}})
 
 <!-- Dolittle is an open-source, decentralized, distributed and event-driven microservice framework. The framework has been designed to build Line of Business applications without sacrificing architectural quality, code quality, maintainability or scalability.
 

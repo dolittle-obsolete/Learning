@@ -1,17 +1,12 @@
 ---
-title: C#
-description: Get started with the Dolittle JavaScript SDK using TypeScript
+title: C# & .NET
+description: Get started with the Dolittle C# SDK using TypeScript
 keywords: Learning, Quickstart, setup, prerequisites, how to, guide, walkthrough, csharp, c#, dotnet, .NET
 author: joel, jakob, sindre
 weight: 1
-alias:
-    - /getting-started/quickstart/
-    - /getting-started/tutorial/
-    - /getting-started/tutorial/setup/
-    - /getting-started/gettingstarted/
 ---
 
-Welcome to the Dolittle C# tutorial for the .NET SDK where you learn how to write a microservice that keeps track of foods prepared by the chefs.
+Welcome to the Dolittle C# tutorial for the [.NET SDK](https://github.com/dolittle/dotnet.sdk) where you learn how to write a microservice that keeps track of foods prepared by the chefs.
 
 This tutorial expects you to have a basic understanding of C#, .NET and Docker.
 
@@ -34,25 +29,27 @@ $ dotnet new console
 $ dotnet add Dolittle.SDK 
 ```
 
-### Create an event type
-First we'll create an event type that represents that a dish has been prepared. Events represents _"facts that have happened"_, making them immutable by definition.
+### Create an `EventType`
+First we'll create an `EventType` that represents that a dish has been prepared. Events represents changes in the system, a _"fact that has happened"_. As the event is a _"fact"_ it's immutable by definition, and as the event _"has happened"_ we should name it in the past tense accordingly.
 
 ```csharp
 namespace Head 
 {
+    // an example GUID, you should create your own
     [EventType("1844473f-d714-4327-8b7f-5b3c2bdfc26a")]
     public class DishPrepared
     {
+        // wtf these are mutable??
         public string Dish { get; set; }
         public string Chef { get; set; }
     }
 }
 ```
+// acshkually this file isn't an EventType as that is our internal thing aarghhhh.
+An `EventType` is a class that defines the properties of the event but it does not contain any calculations or behaviour. The unique GUID given in the `[EventType()]` attribute is used to identify and deserialize this type in other Microservices (more on that later).
 
-The `EventType("1844473f-d714-4327-8b7f-5b3c2bdfc26a")` attribute identifies this event so that it can be deserialized in other Microservices in the future.
-
-### Create an event handler
-We need something that can respond to when a dish has been prepared. Event handlers react to events that have been committed succesfully.
+### Create an `EventHandler`
+We need something that can respond to when a dish has been prepared. `EventHandlers` react to events that have been committed succesfully.
 
 ```csharp
 using System;
@@ -60,22 +57,25 @@ using System.Threading.Tasks;
 
 namespace Head
 {
+    // an example GUID, you should create your own
     [EventHandler("f2d366cf-c00a-4479-acc4-851e04b6fbba")]
     public class DishHandler
     {
-        public Task DishPreparedEvent(DishPrepared @event, EventContext eventContext)
+        public void Handle(DishPrepared @event, EventContext eventContext)
         {
             Console.WriteLine($"{@event.Chef} has prepared {@event.Dish}. Yummm!");
-            return Task.CompletedTask;
         }
     }
 }
 ```
 
-The `EventHandler("f2d366cf-c00a-4479-acc4-851e04b6fbba")` identifies this event handler in the Runtime, and is used to keep track of which event it last processed, and retrying the handling of an event if it fails.
+When an event is succesfully committed, the `Handle()` method will be called for all the `EventHandler`'s with the correct signature for that particular type.
+
+The `[EventHandler("f2d366cf-c00a-4479-acc4-851e04b6fbba")]` attribute identifies this event handler in the Runtime, and is used to keep track of which event it last processed, and retrying the handling of an event if it fails.
 
 ### Connect the client and commit an event
 Let's build a client that connects to the Runtime for a Microservice with the id `"f39b1f61-d360-4675-b859-53c05c87c0e6"`. This Microservice is predefined in the Runtime.
+
 We then associate our events and event handlers to the client before a delicious taco has been prepared.
 
 ```csharp
@@ -104,10 +104,15 @@ namespace Head
             client.EventStore
                 .ForTenant("455...")
                 .Commit(preparedTaco, "bfe6f6e4-ada2-4344-8a3b-65a3e1fe16e9");
+
+            // blocks the thread to let all the event handlers to keep handling events
+            client.Wait();
         }
     }
 }
 ```
+
+Here we create a new event by instantiating the event type with some content. This event is then committed aka saved to the MongoDB for the given tenant. The event handler will then try to handle the event if the commit was successfull.
 
 ### Start the Dolittle Runtime
 Start the Dolittle Runtime with all the necessary dependencies with the following command:
