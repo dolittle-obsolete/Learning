@@ -76,7 +76,7 @@ The `[EventHandler("f2d366cf-c00a-4479-acc4-851e04b6fbba")]` attribute identifie
 ### Connect the client and commit an event
 Let's build a client that connects to the Runtime for a Microservice with the id `"f39b1f61-d360-4675-b859-53c05c87c0e6"`. This Microservice is predefined in the Runtime.
 
-We then associate our events and event handlers to the client before a delicious taco has been prepared.
+We then register our events and event handlers to the client before a delicious taco has been prepared.
 
 ```csharp
 using Dolittle.SDK;
@@ -90,7 +90,7 @@ namespace Head
             var client = Client
                 .ForMicroservice("f39b1f61-d360-4675-b859-53c05c87c0e6")
                 .WithEventTypes(eventTypes =>
-                    eventTypes.Associate<DishPrepared>())
+                    eventTypes.Register<DishPrepared>())
                 .WithEventHandlers(builder =>
                     builder.RegisterEventHandler<DishHandler>())
                 .Build();

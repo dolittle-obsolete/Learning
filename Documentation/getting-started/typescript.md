@@ -85,7 +85,7 @@ import { DishdHandler } from './DishdHandler';
 const client = Client
     .forMicroservice('f39b1f61-d360-4675-b859-53c05c87c0e6')
     .withEventTypes(eventTypes =>
-        eventTypes.associate(DishPrepared))
+        eventTypes.register(DishPrepared))
     .withEventHandlers(builder => {
         builder.registerEventHandler(DishHandler);
     })
@@ -96,7 +96,7 @@ const DishPrepared: DishPrepared = {
     Chef: 'Mr. Taco'
 };
 
-client.EventStore
+client.eventStore
     .forTenant('445...')
     .commit(DishPrepared, 'bfe6f6e4-ada2-4344-8a3b-65a3e1fe16e9');
 ```
