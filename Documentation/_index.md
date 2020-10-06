@@ -17,8 +17,8 @@ aliases:
 ---
 This page lists the tutorials available for the different SDKs.
 
-- Getting started for [TypeScript SDK]({{< ref typescript >}})
 - Getting started for [C# & .NET SDK]({{< ref csharp >}})
+- Getting started for [TypeScript SDK]({{< ref typescript >}})
 
 <!-- Dolittle is an open-source, decentralized, distributed and event-driven microservice framework. The framework has been designed to build Line of Business applications without sacrificing architectural quality, code quality, maintainability or scalability.
 
