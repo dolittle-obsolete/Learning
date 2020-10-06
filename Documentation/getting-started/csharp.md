@@ -15,6 +15,8 @@ After this tutorial you will have:
 * a running Dolittle Runtime and MongoDB, and
 * a Microservice that commits and handles events
 
+Full tutorial code available on [GitHub](https://github.com/dolittle/DotNET.SDK/tree/master/Samples/Kitchen).
+
 ### What you'll need
 Install and configure the required prerequisites locally first:
 
