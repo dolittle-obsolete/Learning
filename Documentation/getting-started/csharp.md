@@ -28,7 +28,7 @@ Setup a .NET Core console project:
 
 ```shell
 $ dotnet new console
-$ dotnet add Dolittle.SDK 
+$ dotnet add package Dolittle.SDK 
 ```
 
 ### Create an `EventType`
