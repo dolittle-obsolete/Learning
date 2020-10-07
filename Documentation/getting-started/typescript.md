@@ -24,7 +24,7 @@ Install and configure the required prerequisites locally first:
 * [Docker](https://www.docker.com/products/docker-desktop)
 
 ### Setup a TypeScript project
-Setup a TypeScript NodeJS project using your favorite package manager. For this tutorial we use NPM.
+Setup a TypeScript NodeJS project using your favorite package manager. For this tutorial we use npm.
 
 ```shell
 $ npm init
