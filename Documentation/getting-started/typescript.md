@@ -24,12 +24,16 @@ Install and configure the required prerequisites locally first:
 * [Docker](https://www.docker.com/products/docker-desktop)
 
 ### Setup a TypeScript project
-Setup a NodeJS project using your favorite package manager and add TypeScript and the Dolittle JavaScript SDK into your project:
+Setup a TypeScript NodeJS project using your favorite package manager. For this tutorial we use NPM.
 
 ```shell
+$ npm init
 $ npm -D install typescript ts-node
 $ npm install @dolittle/sdk
+$ npx tsc --init
 ```
+
+This tutorial makes use of experimental decorators. To enable it simply make sure you have `"experimentalDecorators"` set to `true` in your `tsconfig.json`.
 
 ### Create an `EventType`
 First we'll create an `EventType` that represents that a dish has been prepared. Events represents changes in the system, a _"fact that has happened"_. As the event _"has happened"_, it's immutable by definition, and we should name it in the past tense accordingly.
