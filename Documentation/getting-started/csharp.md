@@ -121,7 +121,7 @@ namespace Kitchen
 }
 ```
 
-The GUID given in `FromEventSource()` is used to identify and group events coming from different sources.
+The GUID given in `FromEventSource()` is used to identify where the events come from.
 
 ### Start the Dolittle Runtime
 Start the Dolittle Runtime with all the necessary dependencies with the following command:
