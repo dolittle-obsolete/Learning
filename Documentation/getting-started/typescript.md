@@ -51,7 +51,7 @@ export class DishPrepared {
 An `EventType` is a class that defines the properties of the event. The GUID given in the `@eventType()` decorator is used to identify this `EventType` in the Runtime.
 
 ### Create an event handler
-Now we need something that can react to dishes that has been prepared. Let's create an `EventHandler` which prints the prepared dishes to the console.
+Now we need something that can react to dishes that have been prepared. Let's create an `EventHandler` which prints the prepared dishes to the console.
 
 ```typescript
 // DishHandler.ts
@@ -69,9 +69,9 @@ export class DishHandler {
 }
 ```
 
-When an event is committed, the method decored with the `@handles(EventType)` for that specific `EventType` will be called.
+When an event is committed, the method decorated with the `@handles(EventType)` for that specific `EventType` will be called.
 
-The `@eventHandler()` decorator identifies this event handler in the Runtime, and is used to keep track of which event it last processed, and and retrying the handling of an event if the handler fails (throws an exception).
+The `@eventHandler()` decorator identifies this event handler in the Runtime, and is used to keep track of which event it last processed, and retrying the handling of an event if the handler fails (throws an exception).
 
 ### Connect the client and commit an event
 Create a client that connects to the Runtime for a Microservice with the id `'f39b1f61-d360-4675-b859-53c05c87c0e6'`. This sample Microservice is preconfigured in the `development` Docker image.
