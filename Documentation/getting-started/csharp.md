@@ -109,7 +109,10 @@ namespace Kitchen
 
             client.EventStore
                 .ForTenant(TenantId.Development)
-                .Commit(preparedTaco, "bfe6f6e4-ada2-4344-8a3b-65a3e1fe16e9");
+                .Commit(eventsBuilder =>
+                    eventsBuilder
+                        .CreateEvent(preparedTaco)
+                        .FromEventSource("bfe6f6e4-ada2-4344-8a3b-65a3e1fe16e9"));
 
             // Blocks until the EventHandlers are finished, i.e. forever
             client.Wait();
@@ -117,6 +120,8 @@ namespace Kitchen
     }
 }
 ```
+
+The GUID given in `FromEventSource()` is used to identify where the events come from.
 
 ### Start the Dolittle Runtime
 Start the Dolittle Runtime with all the necessary dependencies with the following command:

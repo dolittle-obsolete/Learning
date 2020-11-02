@@ -100,6 +100,8 @@ client.eventStore
     .commit(preparedTaco, 'bfe6f6e4-ada2-4344-8a3b-65a3e1fe16e9');
 ```
 
+The GUID given in the `commit()` call is used to identify where the events come from.
+
 ### Start the Dolittle Runtime
 Start the Dolittle Runtime with all the necessary dependencies with the following command:
 
